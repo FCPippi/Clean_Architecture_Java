@@ -1,4 +1,4 @@
-package com.empresa.assinatura.domain.repository;
+package com.fcpippi.demo.domain.repository;
 
 import com.fcpippi.demo.domain.entity.Pagamento;
 
