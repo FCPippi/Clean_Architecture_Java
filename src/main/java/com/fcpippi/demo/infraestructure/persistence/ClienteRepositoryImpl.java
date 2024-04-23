@@ -1,7 +1,9 @@
-package com.fcpippi.demo.infrastructure.persistence;
+package com.fcpippi.demo.infraestructure.persistence;
 
 import com.fcpippi.demo.domain.entity.Cliente;
 import com.fcpippi.demo.domain.repository.ClienteRepository;
+import com.fcpippi.demo.infraestructure.persistence.jpa.ClienteJpaRepository;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
