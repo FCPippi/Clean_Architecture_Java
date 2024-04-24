@@ -1,4 +1,4 @@
-package com.fcpippi.demo.domain.entity;
+package com.fcpippi.demo.infraestructure.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -10,18 +10,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Assinatura {
+public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     
     @ManyToOne
-    private Aplicativo aplicativo;
+    private Assinatura assinatura;
     
-    @ManyToOne
-    private Cliente cliente;
+    private Double valorPago;
     
-    private LocalDate inicioVigencia;
+    private LocalDate dataPagamento;
     
-    private LocalDate fimVigencia;
+    private String promocao;
 }

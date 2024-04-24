@@ -1,4 +1,4 @@
-package com.fcpippi.demo.domain.entity;
+package com.fcpippi.demo.infraestructure.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+public class Aplicativo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     
     private String nome;
     
-    private String email;
+    private Double custoMensal;
 }

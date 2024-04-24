@@ -1,7 +1,7 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
-import com.fcpippi.demo.domain.entity.Aplicativo;
 import com.fcpippi.demo.domain.repository.AplicativoRepository;
+import com.fcpippi.demo.infraestructure.entity.Aplicativo;
 import com.fcpippi.demo.infraestructure.persistence.jpa.AplicativoJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

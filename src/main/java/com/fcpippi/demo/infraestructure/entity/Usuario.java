@@ -1,4 +1,4 @@
-package com.fcpippi.demo.domain.entity;
+package com.fcpippi.demo.infraestructure.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

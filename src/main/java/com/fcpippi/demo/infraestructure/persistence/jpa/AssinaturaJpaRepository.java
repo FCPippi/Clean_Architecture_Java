@@ -1,9 +1,10 @@
 package com.fcpippi.demo.infraestructure.persistence.jpa;
 
-import com.fcpippi.demo.domain.entity.Assinatura;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import com.fcpippi.demo.infraestructure.entity.Assinatura;
 
 import java.util.List;
 

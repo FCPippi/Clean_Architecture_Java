@@ -1,9 +1,9 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
-import com.fcpippi.demo.domain.entity.Aplicativo;
-import com.fcpippi.demo.domain.entity.Assinatura;
-import com.fcpippi.demo.domain.entity.Cliente;
 import com.fcpippi.demo.domain.repository.AssinaturaRepository;
+import com.fcpippi.demo.infraestructure.entity.Aplicativo;
+import com.fcpippi.demo.infraestructure.entity.Assinatura;
+import com.fcpippi.demo.infraestructure.entity.Cliente;
 import com.fcpippi.demo.infraestructure.persistence.jpa.AplicativoJpaRepository;
 import com.fcpippi.demo.infraestructure.persistence.jpa.AssinaturaJpaRepository;
 import com.fcpippi.demo.infraestructure.persistence.jpa.ClienteJpaRepository;

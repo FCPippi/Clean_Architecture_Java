@@ -1,8 +1,8 @@
 package com.fcpippi.demo.domain.repository;
 
-import com.fcpippi.demo.domain.entity.Assinatura;
-
 import java.util.List;
+
+import com.fcpippi.demo.infraestructure.entity.Assinatura;
 
 public interface AssinaturaRepository {
     Assinatura criar(Long codigoCliente, Long codigoAplicativo);

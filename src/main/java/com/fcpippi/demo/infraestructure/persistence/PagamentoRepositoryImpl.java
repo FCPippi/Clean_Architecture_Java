@@ -1,8 +1,8 @@
 // PagamentoRepositoryImpl.java
 package com.fcpippi.demo.infraestructure.persistence;
 
-import com.fcpippi.demo.domain.entity.Pagamento;
 import com.fcpippi.demo.domain.repository.PagamentoRepository;
+import com.fcpippi.demo.infraestructure.entity.Pagamento;
 import com.fcpippi.demo.infraestructure.persistence.jpa.PagamentoJpaRepository;
 
 import org.springframework.context.annotation.Primary;

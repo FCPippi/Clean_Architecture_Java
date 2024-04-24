@@ -1,8 +1,8 @@
 package com.fcpippi.demo.domain.repository;
 
-import com.fcpippi.demo.domain.entity.Aplicativo;
-
 import java.util.List;
+
+import com.fcpippi.demo.infraestructure.entity.Aplicativo;
 
 public interface AplicativoRepository {
     List<Aplicativo> buscarTodos();
