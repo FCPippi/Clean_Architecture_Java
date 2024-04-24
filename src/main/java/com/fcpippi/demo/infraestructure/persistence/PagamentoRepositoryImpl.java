@@ -1,6 +1,5 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
-import com.fcpippi.demo.domain.model.AssinaturaModel;
 import com.fcpippi.demo.domain.repository.PagamentoRepository;
 import com.fcpippi.demo.infraestructure.entity.Assinatura;
 import com.fcpippi.demo.infraestructure.entity.Pagamento;
@@ -59,7 +58,7 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
         obj[0] = status;
         obj[1] = dataValidade.toString();
         obj[2] = valorEstornado.toString();
-        
+
         return obj;
     }
 }
