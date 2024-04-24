@@ -1,5 +1,6 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
+import com.fcpippi.demo.domain.model.AplicativoModel;
 import com.fcpippi.demo.domain.repository.AplicativoRepository;
 import com.fcpippi.demo.infraestructure.entity.Aplicativo;
 import com.fcpippi.demo.infraestructure.persistence.jpa.AplicativoJpaRepository;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Primary
@@ -21,17 +23,32 @@ public class AplicativoRepositoryImpl implements AplicativoRepository {
     }
 
     @Override
-    public List<Aplicativo> buscarTodos() {
-        return repository.findAll();
+    public List<AplicativoModel> buscarTodos() {
+        List<Aplicativo> apps = repository.findAll();
+        if (apps.size() == 0 ) {
+            return null;
+        }
+        return repository.findAll().stream().map(app -> Aplicativo.toModel(app)).toList();
+    }
+    @Override
+    public AplicativoModel buscarPorId(Long id) {
+        Optional<Aplicativo> findApp = repository.findById(id);
+        Aplicativo app = findApp.isPresent() ? findApp.get() : null;
+        if(app == null) {
+           return null; 
+        }
+        return Aplicativo.toModel(app);
     }
 
     @Override
-    public Aplicativo buscarPorId(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public void atualizarCusto(Long id, Double custo) {
-        repository.atualizarCusto(id, custo);
+    public AplicativoModel atualizarCusto(Long id, Double custo) {
+        Optional<Aplicativo> findApp = repository.findById(id);
+        Aplicativo app = findApp.isPresent() ? findApp.get() : null;
+        if(app == null) {
+           return null; 
+        }
+        app.setCustoMensal(custo);
+        repository.save(app);
+        return Aplicativo.toModel(app);
     }
 }

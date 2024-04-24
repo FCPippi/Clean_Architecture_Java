@@ -2,10 +2,10 @@ package com.fcpippi.demo.domain.repository;
 
 import java.util.List;
 
-import com.fcpippi.demo.infraestructure.entity.Aplicativo;
+import com.fcpippi.demo.domain.model.AplicativoModel;
 
 public interface AplicativoRepository {
-    List<Aplicativo> buscarTodos();
-    Aplicativo buscarPorId(Long id);
-    void atualizarCusto(Long id, Double custo);
+    List<AplicativoModel> buscarTodos();
+    AplicativoModel buscarPorId(Long id);
+    AplicativoModel atualizarCusto(Long id, Double custo);
 }

@@ -1,5 +1,6 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
+import com.fcpippi.demo.domain.model.AssinaturaModel;
 import com.fcpippi.demo.domain.repository.AssinaturaRepository;
 import com.fcpippi.demo.infraestructure.entity.Aplicativo;
 import com.fcpippi.demo.infraestructure.entity.Assinatura;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Repository
 @Primary
 public class AssinaturaRepositoryImpl implements AssinaturaRepository {
@@ -22,15 +24,15 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
     private final ClienteJpaRepository clienteJpaRepository;
 
     public AssinaturaRepositoryImpl(AssinaturaJpaRepository assinaturaJpaRepository,
-                                    AplicativoJpaRepository aplicativoJpaRepository,
-                                    ClienteJpaRepository clienteJpaRepository) {
+            AplicativoJpaRepository aplicativoJpaRepository,
+            ClienteJpaRepository clienteJpaRepository) {
         this.assinaturaJpaRepository = assinaturaJpaRepository;
         this.aplicativoJpaRepository = aplicativoJpaRepository;
         this.clienteJpaRepository = clienteJpaRepository;
     }
 
     @Override
-    public Assinatura criar(Long codigoCliente, Long codigoAplicativo) {
+    public AssinaturaModel criar(Long codigoCliente, Long codigoAplicativo) {
         Cliente cliente = clienteJpaRepository.findById(codigoCliente).orElse(null);
         Aplicativo aplicativo = aplicativoJpaRepository.findById(codigoAplicativo).orElse(null);
         if (cliente != null && aplicativo != null) {
@@ -38,35 +40,45 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
             assinatura.setCliente(cliente);
             assinatura.setAplicativo(aplicativo);
             assinatura.setInicioVigencia(LocalDate.now());
-            assinatura.setFimVigencia(LocalDate.now().plusMonths(1));
-            return assinaturaJpaRepository.save(assinatura);
+            assinatura.setFimVigencia(LocalDate.now().plusDays(7));
+            assinaturaJpaRepository.save(assinatura);
+            return Assinatura.toModel(assinatura);
         }
         return null;
     }
 
     @Override
-    public List<Assinatura> buscarPorTipo(String tipo) {
+    public List<AssinaturaModel> buscarPorTipo(String tipo) {
         if (tipo.equalsIgnoreCase("ATIVAS")) {
             return assinaturaJpaRepository.findAll().stream()
                     .filter(assinatura -> assinatura.getFimVigencia().isAfter(LocalDate.now()))
+                    .map(assinatura -> Assinatura.toModel(assinatura))
                     .toList();
         } else if (tipo.equalsIgnoreCase("CANCELADAS")) {
             return assinaturaJpaRepository.findAll().stream()
                     .filter(assinatura -> assinatura.getFimVigencia().isBefore(LocalDate.now()))
+                    .map(assinatura -> Assinatura.toModel(assinatura))
                     .toList();
         } else {
-            return assinaturaJpaRepository.findAll();
+            return assinaturaJpaRepository.findAll().stream().map(assinatura -> Assinatura.toModel(assinatura))
+                    .toList();
         }
     }
 
     @Override
-    public List<Assinatura> buscarPorCliente(Long codigoCliente) {
-        return assinaturaJpaRepository.buscarPorCliente(codigoCliente);
+    public List<AssinaturaModel> buscarPorCliente(Long codigoCliente) {
+        return assinaturaJpaRepository.findAll().stream()
+                .filter(assinatura -> assinatura.getCliente().getCodigo() == codigoCliente)
+                .map(assinatura -> Assinatura.toModel(assinatura))
+                .toList();
     }
 
     @Override
-    public List<Assinatura> buscarPorAplicativo(Long codigoAplicativo) {
-        return assinaturaJpaRepository.buscarPorAplicativo(codigoAplicativo);
+    public List<AssinaturaModel> buscarPorAplicativo(Long codigoAplicativo) {
+        return assinaturaJpaRepository.findAll().stream()
+                .filter(assinatura -> assinatura.getAplicativo().getCodigo() == codigoAplicativo)
+                .map(assinatura -> Assinatura.toModel(assinatura))
+                .toList();
     }
 
     @Override
@@ -76,5 +88,13 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
             return assinatura.getFimVigencia().isAfter(LocalDate.now());
         }
         return false;
+    }
+
+    @Override
+    public AssinaturaModel buscaPorClienteAplicativo(Long codigoCliente, Long codigoAplicativo) {
+        return assinaturaJpaRepository.findAll().stream()
+                .filter(assinatura -> (assinatura.getAplicativo().getCodigo() == codigoAplicativo
+                        && assinatura.getCliente().getCodigo() == codigoCliente))
+                .map(assinatura -> Assinatura.toModel(assinatura)).findFirst().orElse(null);
     }
 }

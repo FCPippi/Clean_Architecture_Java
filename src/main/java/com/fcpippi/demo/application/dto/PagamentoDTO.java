@@ -1,34 +1,25 @@
-package com.fcpippi.demo.infraestructure.entity;
+package com.fcpippi.demo.application.dto;
 
 import com.fcpippi.demo.domain.model.PagamentoModel;
-import jakarta.persistence.*;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pagamento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PagamentoDTO {
     private Long codigo;
-    
-    @ManyToOne
-    private Assinatura assinatura;
-    
+    private Long codigoAssinatura;
     private Double valorPago;
-    
     private LocalDate dataPagamento;
-    
     private String promocao;
 
-    public static PagamentoModel toModel(Pagamento pagamento) {
-        return new PagamentoModel(
+    public static PagamentoDTO fromModel(PagamentoModel pagamento) {
+        return new PagamentoDTO(
             pagamento.getCodigo(),
-            Assinatura.toModel(pagamento.getAssinatura()),
+            pagamento.getAssinatura().getCodigo(),
             pagamento.getValorPago(),
             pagamento.getDataPagamento(),
             pagamento.getPromocao()

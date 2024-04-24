@@ -2,8 +2,9 @@ package com.fcpippi.demo.domain.repository;
 
 import java.util.List;
 
-import com.fcpippi.demo.infraestructure.entity.Cliente;
+import com.fcpippi.demo.domain.model.ClienteModel;
 
 public interface ClienteRepository {
-    List<Cliente> buscarTodos();
+    List<ClienteModel> buscarTodos();
+    ClienteModel buscaPorId(Long id);
 }

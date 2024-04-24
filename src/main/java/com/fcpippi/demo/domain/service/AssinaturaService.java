@@ -1,10 +1,9 @@
 package com.fcpippi.demo.domain.service;
 
+import com.fcpippi.demo.domain.model.AssinaturaModel;
 import com.fcpippi.demo.domain.repository.AssinaturaRepository;
-import com.fcpippi.demo.infraestructure.entity.Assinatura;
 
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -15,19 +14,27 @@ public class AssinaturaService {
         this.assinaturaRepository = assinaturaRepository;
     }
 
-    public Assinatura criar(Long codigoCliente, Long codigoAplicativo) {
-        return assinaturaRepository.criar(codigoCliente, codigoAplicativo);
+    public AssinaturaModel criarAssinatura(Long idCliente, Long idAplicativo) {
+
+        // Verificar se o cliente já possui uma assinatura para o aplicativo
+        AssinaturaModel assinaturaExistente = assinaturaRepository.buscaPorClienteAplicativo(idCliente, idAplicativo);
+        if (assinaturaExistente == null) {
+            return null;
+        }
+
+        // Criar a assinatura
+        return assinaturaRepository.criar(idCliente, idAplicativo);
     }
 
-    public List<Assinatura> buscarPorTipo(String tipo) {
+    public List<AssinaturaModel> buscarPorTipo(String tipo) {
         return assinaturaRepository.buscarPorTipo(tipo);
     }
 
-    public List<Assinatura> buscarPorCliente(Long codigoCliente) {
+    public List<AssinaturaModel> buscarPorCliente(Long codigoCliente) {
         return assinaturaRepository.buscarPorCliente(codigoCliente);
     }
 
-    public List<Assinatura> buscarPorAplicativo(Long codigoAplicativo) {
+    public List<AssinaturaModel> buscarPorAplicativo(Long codigoAplicativo) {
         return assinaturaRepository.buscarPorAplicativo(codigoAplicativo);
     }
 

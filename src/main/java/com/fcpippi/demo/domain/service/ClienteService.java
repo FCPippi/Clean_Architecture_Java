@@ -1,7 +1,7 @@
 package com.fcpippi.demo.domain.service;
 
+import com.fcpippi.demo.domain.model.ClienteModel;
 import com.fcpippi.demo.domain.repository.ClienteRepository;
-import com.fcpippi.demo.infraestructure.entity.Cliente;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public List<Cliente> buscarTodos() {
+    public List<ClienteModel> buscarTodos() {
         return clienteRepository.buscarTodos();
     }
 }

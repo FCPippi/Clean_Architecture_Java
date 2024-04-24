@@ -1,5 +1,6 @@
 package com.fcpippi.demo.infraestructure.entity;
 
+import com.fcpippi.demo.domain.model.ClienteModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +18,12 @@ public class Cliente {
     private String nome;
     
     private String email;
+
+    public static ClienteModel toModel(Cliente cliente) {
+        return new ClienteModel(
+            cliente.getCodigo(),
+            cliente.getNome(),
+            cliente.getEmail()
+        );
+    }
 }

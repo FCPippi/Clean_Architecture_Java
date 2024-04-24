@@ -1,7 +1,8 @@
 package com.fcpippi.demo.domain.service;
 
+import com.fcpippi.demo.domain.model.AplicativoModel;
 import com.fcpippi.demo.domain.repository.AplicativoRepository;
-import com.fcpippi.demo.infraestructure.entity.Aplicativo;
+
 
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,12 @@ public class AplicativoService {
         this.aplicativoRepository = aplicativoRepository;
     }
 
-    public List<Aplicativo> buscarTodos() {
+    public List<AplicativoModel> buscarTodos() {
         return aplicativoRepository.buscarTodos();
     }
 
-    public Aplicativo atualizarCusto(Long idAplicativo, Double custo) {
-        aplicativoRepository.atualizarCusto(idAplicativo, custo);
-        return aplicativoRepository.buscarPorId(idAplicativo);
+    public AplicativoModel atualizarCusto(Long idAplicativo, Double custo) {
+        return aplicativoRepository.atualizarCusto(idAplicativo, custo);
+       
     }
 }

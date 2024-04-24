@@ -13,7 +13,7 @@ public class PagamentoService {
         this.pagamentoRepository = pagamentoRepository;
     }
 
-    public Pagamento registrar(Pagamento pagamento) {
-        return pagamentoRepository.registrar(pagamento);
+    public Object registrar(Pagamento pagamento, String promo) {
+        return pagamentoRepository.registrar(pagamento, promo);
     }
 }

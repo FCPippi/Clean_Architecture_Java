@@ -1,5 +1,6 @@
 package com.fcpippi.demo.infraestructure.entity;
 
+import com.fcpippi.demo.domain.model.AssinaturaModel;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -24,4 +25,14 @@ public class Assinatura {
     private LocalDate inicioVigencia;
     
     private LocalDate fimVigencia;
+
+    public static AssinaturaModel toModel(Assinatura assinatura) {
+        return new AssinaturaModel(
+            assinatura.getCodigo(),
+            Aplicativo.toModel(assinatura.getAplicativo()),
+            Cliente.toModel(assinatura.getCliente()),
+            assinatura.getInicioVigencia(),
+            assinatura.getFimVigencia()
+        );
+    }
 }

@@ -1,3 +1,5 @@
+package com.fcpippi.demo.domain.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -5,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Aplicativo {
+public class ClienteModel {
     private Long codigo;
     private String nome;
-    private Double custoMensal;
+    private String email;
 }
