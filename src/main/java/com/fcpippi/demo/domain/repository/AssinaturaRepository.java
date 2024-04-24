@@ -10,6 +10,7 @@ public interface AssinaturaRepository {
     List<AssinaturaModel> buscarPorTipo(String tipo);
     List<AssinaturaModel> buscarPorCliente(Long codigoCliente);
     List<AssinaturaModel> buscarPorAplicativo(Long codigoAplicativo);
-    AssinaturaModel buscaPorClienteAplicativo(Long idCliente, Long idAplicativo);
+    AssinaturaModel buscaPorClienteAplicativo(Long codigoCliente, Long codigoAplicativo);
+    AssinaturaModel buscaPorId(Long codigoAssinatura);
     boolean assinaturaValida(Long codigoAssinatura);
 }

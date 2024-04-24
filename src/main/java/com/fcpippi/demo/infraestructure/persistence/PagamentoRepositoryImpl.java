@@ -1,5 +1,6 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
+import com.fcpippi.demo.domain.model.AssinaturaModel;
 import com.fcpippi.demo.domain.repository.PagamentoRepository;
 import com.fcpippi.demo.infraestructure.entity.Assinatura;
 import com.fcpippi.demo.infraestructure.entity.Pagamento;
@@ -23,37 +24,42 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
     }
 
     @Override
-    public Object registrar(Pagamento pagamento, String promocao) {
-        Assinatura assinatura = pagamento.getAssinatura();
-        LocalDate dataValidade = assinatura.getFimVigencia();
-        Double valorEstornado = 0.00;
-        String status;
+    public Object registrar(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago) {
+        Assinatura assinatura = assinaturaJpaRepository.findById(codigoAssinatura).orElse(null);
+        if (assinatura == null) return null;
 
-        if (pagamento.getValorPago().equals(assinatura.getAplicativo().getCustoMensal())) {
+        LocalDate dataValidade = assinatura.getFimVigencia();
+        Double valorEstornado = assinatura.getAplicativo().getCustoMensal();
+        String status = "VALOR_INCORRETO";
+        
+        String[] obj = {status, dataValidade.toString(), valorEstornado.toString()};
+
+        if (valorPago < assinatura.getAplicativo().getCustoMensal()) {
+
+        } else {
+
+        
             if (dataValidade.isAfter(LocalDate.now())) {
                 dataValidade = dataValidade.plusDays(30);
+                valorEstornado = 0.0;
+                status = "PAGAMENTO_OK";
             } else {
                 dataValidade = LocalDate.now().plusDays(30);
-            }
-            status = "PAGAMENTO_OK";
-        } else {
-            valorEstornado = pagamento.getValorPago();
-            status = "VALOR_INCORRETO";
+                valorEstornado = 0.0;
+                status = "PAGAMENTO_OK";
+            }        
         }
-
-        if(promocao != null) {
-            if(promocao.equals("PROMO")) {
-                valorEstornado = pagamento.getValorPago() * 0.2;
-            }
-    
-        }
-       
         assinatura.setFimVigencia(dataValidade);
         assinaturaJpaRepository.save(assinatura);
 
+        Pagamento pagamento = new Pagamento();
         pagamento.setAssinatura(assinatura);
         pagamentoJpaRepository.save(pagamento);
-        String[] obj = {status, dataValidade.toString(), valorEstornado.toString()};
+        
+        obj[0] = status;
+        obj[1] = dataValidade.toString();
+        obj[2] = valorEstornado.toString();
+        
         return obj;
     }
 }

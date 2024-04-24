@@ -26,4 +26,12 @@ public class Aplicativo {
             aplicativo.getCustoMensal()
         );
     }
+
+    public static Aplicativo fromModel(AplicativoModel aplicativoModel) {
+        return new Aplicativo(
+            aplicativoModel.getCodigo(),
+            aplicativoModel.getNome(),
+            aplicativoModel.getCustoMensal()
+        );
+    }
 }

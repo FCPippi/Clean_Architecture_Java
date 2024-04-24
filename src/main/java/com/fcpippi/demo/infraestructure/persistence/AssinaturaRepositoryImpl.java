@@ -1,13 +1,14 @@
 package com.fcpippi.demo.infraestructure.persistence;
 
+import com.fcpippi.demo.domain.model.AplicativoModel;
 import com.fcpippi.demo.domain.model.AssinaturaModel;
+import com.fcpippi.demo.domain.model.ClienteModel;
 import com.fcpippi.demo.domain.repository.AssinaturaRepository;
 import com.fcpippi.demo.infraestructure.entity.Aplicativo;
 import com.fcpippi.demo.infraestructure.entity.Assinatura;
 import com.fcpippi.demo.infraestructure.entity.Cliente;
-import com.fcpippi.demo.infraestructure.persistence.jpa.AplicativoJpaRepository;
 import com.fcpippi.demo.infraestructure.persistence.jpa.AssinaturaJpaRepository;
-import com.fcpippi.demo.infraestructure.persistence.jpa.ClienteJpaRepository;
+
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -20,25 +21,30 @@ import java.util.List;
 @Primary
 public class AssinaturaRepositoryImpl implements AssinaturaRepository {
     private final AssinaturaJpaRepository assinaturaJpaRepository;
-    private final AplicativoJpaRepository aplicativoJpaRepository;
-    private final ClienteJpaRepository clienteJpaRepository;
+    private final AplicativoRepositoryImpl aplicativoJpaRepository;
+    private final ClienteRepositoryImpl clienteJpaRepository;
 
     public AssinaturaRepositoryImpl(AssinaturaJpaRepository assinaturaJpaRepository,
-            AplicativoJpaRepository aplicativoJpaRepository,
-            ClienteJpaRepository clienteJpaRepository) {
+    AplicativoRepositoryImpl aplicativoRepository,
+            ClienteRepositoryImpl clienteRepository) {
         this.assinaturaJpaRepository = assinaturaJpaRepository;
-        this.aplicativoJpaRepository = aplicativoJpaRepository;
-        this.clienteJpaRepository = clienteJpaRepository;
+        this.aplicativoJpaRepository = aplicativoRepository;
+        this.clienteJpaRepository = clienteRepository;
+    }
+
+    @Override
+    public AssinaturaModel buscaPorId(Long codigoAssinatura) {
+        return Assinatura.toModel(assinaturaJpaRepository.findById(codigoAssinatura).get());
     }
 
     @Override
     public AssinaturaModel criar(Long codigoCliente, Long codigoAplicativo) {
-        Cliente cliente = clienteJpaRepository.findById(codigoCliente).orElse(null);
-        Aplicativo aplicativo = aplicativoJpaRepository.findById(codigoAplicativo).orElse(null);
+        ClienteModel cliente = clienteJpaRepository.buscaPorId(codigoCliente);
+        AplicativoModel aplicativo = aplicativoJpaRepository.buscarPorId(codigoAplicativo);
         if (cliente != null && aplicativo != null) {
             Assinatura assinatura = new Assinatura();
-            assinatura.setCliente(cliente);
-            assinatura.setAplicativo(aplicativo);
+            assinatura.setCliente(Cliente.fromModel(cliente));
+            assinatura.setAplicativo(Aplicativo.fromModel(aplicativo));
             assinatura.setInicioVigencia(LocalDate.now());
             assinatura.setFimVigencia(LocalDate.now().plusDays(7));
             assinaturaJpaRepository.save(assinatura);

@@ -35,4 +35,14 @@ public class Assinatura {
             assinatura.getFimVigencia()
         );
     }
+
+    public static Assinatura fromModel(AssinaturaModel assinaturaModel) {
+        return new Assinatura(
+            assinaturaModel.getCodigo(),
+            Aplicativo.fromModel(assinaturaModel.getAplicativo()),
+            Cliente.fromModel(assinaturaModel.getCliente()),
+            assinaturaModel.getInicioVigencia(),
+            assinaturaModel.getFimVigencia()
+        );
+    }
 }

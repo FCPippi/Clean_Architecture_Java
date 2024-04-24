@@ -26,4 +26,12 @@ public class Cliente {
             cliente.getEmail()
         );
     }
+
+    public static Cliente fromModel(ClienteModel clienteModel) {
+        return new Cliente(
+            clienteModel.getCodigo(),
+            clienteModel.getNome(),
+            clienteModel.getEmail()
+        );
+    }
 }

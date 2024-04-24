@@ -34,4 +34,14 @@ public class Pagamento {
             pagamento.getPromocao()
         );
     }
+
+    public static Pagamento fromModel(PagamentoModel pagamentoModel) {
+        return new Pagamento(
+            pagamentoModel.getCodigo(),
+            Assinatura.fromModel(pagamentoModel.getAssinatura()),
+            pagamentoModel.getValorPago(),
+            pagamentoModel.getDataPagamento(),
+            pagamentoModel.getPromocao()
+        );
+    }
 }

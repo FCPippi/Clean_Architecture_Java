@@ -1,7 +1,5 @@
 package com.fcpippi.demo.domain.repository;
 
-import com.fcpippi.demo.infraestructure.entity.Pagamento;
-
 public interface PagamentoRepository {
-    Object registrar(Pagamento pagamento, String Promocao);
+    Object registrar(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago);
 }
