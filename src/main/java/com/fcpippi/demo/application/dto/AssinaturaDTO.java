@@ -1,6 +1,7 @@
 package com.fcpippi.demo.application.dto;
 
-import com.fcpippi.demo.domain.model.Assinatura;
+import com.fcpippi.demo.domain.model.AssinaturaModel;
+
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,13 +17,12 @@ public class AssinaturaDTO {
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
 
-    public static AssinaturaDTO fromModel(Assinatura assinatura) {
+    public static AssinaturaDTO fromModel(AssinaturaModel assinatura) {
         return new AssinaturaDTO(
-            assinatura.getCodigo(),
-            assinatura.getAplicativo().getCodigo(),
-            assinatura.getCliente().getCodigo(),
-            assinatura.getInicioVigencia(),
-            assinatura.getFimVigencia()
-        );
+                assinatura.getCodigo(),
+                assinatura.getAplicativo().getCodigo(),
+                assinatura.getCliente().getCodigo(),
+                assinatura.getInicioVigencia(),
+                assinatura.getFimVigencia());
     }
 }

@@ -3,7 +3,6 @@ package com.fcpippi.demo.domain.service;
 import com.fcpippi.demo.domain.model.AplicativoModel;
 import com.fcpippi.demo.domain.repository.AplicativoRepository;
 
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +19,7 @@ public class AplicativoService {
         return aplicativoRepository.buscarTodos();
     }
 
-    public AplicativoModel atualizarCusto(Long idAplicativo, Double custo) {
-        return aplicativoRepository.atualizarCusto(idAplicativo, custo);
-       
+    public AplicativoModel atualizarCusto(Long codigoAplicativo, Double custo) {
+        return aplicativoRepository.atualizarCusto(codigoAplicativo, custo);
     }
 }

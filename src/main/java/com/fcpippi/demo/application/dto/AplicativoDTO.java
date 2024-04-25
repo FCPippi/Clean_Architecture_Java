@@ -1,6 +1,7 @@
 package com.fcpippi.demo.application.dto;
 
-import com.fcpippi.demo.domain.model.Aplicativo;
+import com.fcpippi.demo.domain.model.AplicativoModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,11 +14,10 @@ public class AplicativoDTO {
     private String nome;
     private Double custoMensal;
 
-    public static AplicativoDTO fromModel(Aplicativo aplicativo) {
+    public static AplicativoDTO fromModel(AplicativoModel aplicativo) {
         return new AplicativoDTO(
-            aplicativo.getCodigo(),
-            aplicativo.getNome(),
-            aplicativo.getCustoMensal()
-        );
+                aplicativo.getCodigo(),
+                aplicativo.getNome(),
+                aplicativo.getCustoMensal());
     }
 }

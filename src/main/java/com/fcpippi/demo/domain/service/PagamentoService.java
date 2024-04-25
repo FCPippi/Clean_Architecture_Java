@@ -1,7 +1,6 @@
 package com.fcpippi.demo.domain.service;
 
 import com.fcpippi.demo.domain.repository.PagamentoRepository;
-import com.fcpippi.demo.infraestructure.entity.Pagamento;
 
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,7 @@ public class PagamentoService {
         this.pagamentoRepository = pagamentoRepository;
     }
 
-    public Object registrar(Pagamento pagamento, String promo) {
-        return pagamentoRepository.registrar(pagamento, promo);
+    public Object registrar(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago) {
+        return pagamentoRepository.registrar(dia, mes, ano, codigoAssinatura, valorPago);
     }
 }
