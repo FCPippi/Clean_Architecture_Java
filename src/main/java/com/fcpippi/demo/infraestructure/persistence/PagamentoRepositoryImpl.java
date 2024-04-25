@@ -17,7 +17,8 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
     private final PagamentoJpaRepository pagamentoJpaRepository;
     private final AssinaturaJpaRepository assinaturaJpaRepository;
 
-    public PagamentoRepositoryImpl(PagamentoJpaRepository pagamentoJpaRepository, AssinaturaJpaRepository assinaturaJpaRepository) {
+    public PagamentoRepositoryImpl(PagamentoJpaRepository pagamentoJpaRepository,
+            AssinaturaJpaRepository assinaturaJpaRepository) {
         this.pagamentoJpaRepository = pagamentoJpaRepository;
         this.assinaturaJpaRepository = assinaturaJpaRepository;
     }
@@ -25,19 +26,19 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
     @Override
     public Object registrar(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago) {
         Assinatura assinatura = assinaturaJpaRepository.findById(codigoAssinatura).orElse(null);
-        if (assinatura == null) return null;
+        if (assinatura == null)
+            return null;
 
         LocalDate dataValidade = assinatura.getFimVigencia();
         Double valorEstornado = assinatura.getAplicativo().getCustoMensal();
         String status = "VALOR_INCORRETO";
-        
-        String[] obj = {status, dataValidade.toString(), valorEstornado.toString()};
+
+        String[] obj = { status, dataValidade.toString(), valorEstornado.toString() };
 
         if (valorPago < assinatura.getAplicativo().getCustoMensal()) {
 
         } else {
 
-        
             if (dataValidade.isAfter(LocalDate.now())) {
                 dataValidade = dataValidade.plusDays(30);
                 valorEstornado = 0.0;
@@ -46,15 +47,19 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
                 dataValidade = LocalDate.now().plusDays(30);
                 valorEstornado = 0.0;
                 status = "PAGAMENTO_OK";
-            }        
+            }
+            Pagamento pagamento = new Pagamento();
+            LocalDate dataPagamento = LocalDate.of(Integer.parseInt(ano), Integer.parseInt(mes), Integer.parseInt(dia));
+            
+            pagamento.setValorPago(valorPago);
+            pagamento.setDataPagamento(dataPagamento);
+            pagamento.setAssinatura(assinatura);
+
+            pagamentoJpaRepository.save(pagamento);
         }
         assinatura.setFimVigencia(dataValidade);
         assinaturaJpaRepository.save(assinatura);
 
-        Pagamento pagamento = new Pagamento();
-        pagamento.setAssinatura(assinatura);
-        pagamentoJpaRepository.save(pagamento);
-        
         obj[0] = status;
         obj[1] = dataValidade.toString();
         obj[2] = valorEstornado.toString();

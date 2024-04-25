@@ -32,7 +32,8 @@ public class Assinatura {
             Aplicativo.toModel(assinatura.getAplicativo()),
             Cliente.toModel(assinatura.getCliente()),
             assinatura.getInicioVigencia(),
-            assinatura.getFimVigencia()
+            assinatura.getFimVigencia(),
+            assinatura.getFimVigencia().isBefore(LocalDate.now()) ? "CANCELADA" : "ATIVA"
         );
     }
 

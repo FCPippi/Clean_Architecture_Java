@@ -16,6 +16,7 @@ public class AssinaturaDTO {
     private Long codigoCliente;
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
+    private String tipo;
 
     public static AssinaturaDTO fromModel(AssinaturaModel assinatura) {
         return new AssinaturaDTO(
@@ -23,6 +24,7 @@ public class AssinaturaDTO {
                 assinatura.getAplicativo().getCodigo(),
                 assinatura.getCliente().getCodigo(),
                 assinatura.getInicioVigencia(),
-                assinatura.getFimVigencia());
+                assinatura.getFimVigencia(),
+                assinatura.getTipo());
     }
 }

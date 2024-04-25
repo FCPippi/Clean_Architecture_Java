@@ -15,4 +15,5 @@ public class AssinaturaModel {
     private ClienteModel cliente;
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
+    private String tipo;
 }
