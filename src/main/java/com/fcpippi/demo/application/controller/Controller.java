@@ -15,6 +15,7 @@ import com.fcpippi.demo.application.dto.ClienteDTO;
 import com.fcpippi.demo.application.useCases.AtualizaCustoMensalUC;
 import com.fcpippi.demo.application.useCases.CriaAssinaturaUC;
 import com.fcpippi.demo.application.useCases.ListaAplicativosUC;
+import com.fcpippi.demo.application.useCases.ListaAssinaturaAplicativoUC;
 import com.fcpippi.demo.application.useCases.ListaAssinaturaClienteUC;
 import com.fcpippi.demo.application.useCases.ListaAssinaturaTipoUC;
 import com.fcpippi.demo.application.useCases.ListaClientesUC;
@@ -27,24 +28,27 @@ public class Controller {
     private CriaAssinaturaUC criaAssinaturaUC;
     private ListaAplicativosUC listaAplicativosUC;
     private ListaAssinaturaClienteUC listaAssinaturaClienteUC;
+    private ListaAssinaturaAplicativoUC listaAssinaturasAplicativoUC;
     private ListaAssinaturaTipoUC listaAssinaturaTipoUC;
     private ListaClientesUC listaClientesUC;
     private RegistraPagamentoUC registraPagamentoUC;
-    private VerificaValidadeAssinaturaUC VerificaValidadeAssinaturaUC;
+    private VerificaValidadeAssinaturaUC verificaValidadeAssinaturaUC;
 
     public Controller(AtualizaCustoMensalUC atualizaCustoMensalUC, CriaAssinaturaUC criaAssinaturaUC,
             ListaAplicativosUC listaAplicativosUC, ListaAssinaturaClienteUC listaAssinaturaClienteUC,
+            ListaAssinaturaAplicativoUC listaAssinaturaAplicativoUC,
             ListaAssinaturaTipoUC listaAssinaturaTipoUC, ListaClientesUC listaClientesUC,
             RegistraPagamentoUC registraPagamentoUC,
-            com.fcpippi.demo.application.useCases.VerificaValidadeAssinaturaUC verificaValidadeAssinaturaUC) {
+            VerificaValidadeAssinaturaUC verificaValidadeAssinaturaUC) {
         this.atualizaCustoMensalUC = atualizaCustoMensalUC;
         this.criaAssinaturaUC = criaAssinaturaUC;
         this.listaAplicativosUC = listaAplicativosUC;
         this.listaAssinaturaClienteUC = listaAssinaturaClienteUC;
+        this.listaAssinaturasAplicativoUC = listaAssinaturaAplicativoUC;
         this.listaAssinaturaTipoUC = listaAssinaturaTipoUC;
         this.listaClientesUC = listaClientesUC;
         this.registraPagamentoUC = registraPagamentoUC;
-        VerificaValidadeAssinaturaUC = verificaValidadeAssinaturaUC;
+        this.verificaValidadeAssinaturaUC = verificaValidadeAssinaturaUC;
     }
 
     @GetMapping("/servcad/clientes")
@@ -61,9 +65,28 @@ public class Controller {
 
     @GetMapping("/servcad/assinaturas/{tipo}")
     @CrossOrigin(origins = "*")
-    public List<AssinaturaDTO> listaAssinaturasTipo(String tipo) {
-        return this.listaAssinaturasTipo(tipo);
+    public List<AssinaturaDTO> listaAssinaturasTipo(@PathVariable(value = "tipo") String tipo) {
+        return this.listaAssinaturaTipoUC.run(tipo);
     }
+
+    @GetMapping("/servcad/asscli/{codcli}")
+    @CrossOrigin
+    public List<AssinaturaDTO> listaAssinaturasCliente(@PathVariable(value = "codcli") Long codigoCliente) {
+        return this.listaAssinaturaClienteUC.run(codigoCliente);
+    }
+
+    @GetMapping("/servcad/assapp/{codapp}")
+    @CrossOrigin(origins = "*")
+    public List<AssinaturaDTO> listaAssinaturasAplicativo(@PathVariable(value = "codapp") Long codigoAplicativo) {
+        return this.listaAssinaturasAplicativoUC.run(codigoAplicativo);
+    }
+
+    @GetMapping("/assinvalida/{codass}")
+    @CrossOrigin(origins = "*")
+    public boolean verificaValidadeAssinatura(@PathVariable(value = "codass") Long codigoAssinatura) {
+        return this.verificaValidadeAssinaturaUC.run(codigoAssinatura);
+    }
+
 
     @PostMapping("/servcad/assinaturas")
     @CrossOrigin(origins = "*")
@@ -76,5 +99,12 @@ public class Controller {
     public AplicativoDTO atualizaCusto(@PathVariable(value = "idAplicativo") Long codigoAplicativo,
             @RequestBody Double custoMensal) {
         return this.atualizaCustoMensalUC.run(codigoAplicativo, custoMensal);
+    }
+
+    @PostMapping("/registrapagamento")
+    @CrossOrigin(origins = "*")
+    public Object registraPagamento(@RequestBody String dia, @RequestBody String mes, @RequestBody String ano,
+            @RequestBody Long codigoAssinatura, @RequestBody Double valorPago) {
+        return this.registraPagamentoUC.run(dia, mes, ano, codigoAssinatura, valorPago);
     }
 }

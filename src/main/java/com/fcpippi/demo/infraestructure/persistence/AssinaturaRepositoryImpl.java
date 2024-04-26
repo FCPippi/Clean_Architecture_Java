@@ -41,7 +41,8 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
     public AssinaturaModel criar(Long codigoCliente, Long codigoAplicativo) {
         ClienteModel cliente = clienteJpaRepository.buscaPorId(codigoCliente);
         AplicativoModel aplicativo = aplicativoJpaRepository.buscarPorId(codigoAplicativo);
-        if (cliente != null && aplicativo != null) {
+        AssinaturaModel assinaturaExistente  = this.buscaPorClienteAplicativo(cliente.getCodigo(), aplicativo.getCodigo());
+        if (cliente != null && aplicativo != null && assinaturaExistente == null) {
             Assinatura assinatura = new Assinatura();
             assinatura.setCliente(Cliente.fromModel(cliente));
             assinatura.setAplicativo(Aplicativo.fromModel(aplicativo));
