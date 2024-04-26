@@ -15,14 +15,11 @@ public class AssinaturaService {
     }
 
     public AssinaturaModel criarAssinatura(Long idCliente, Long idAplicativo) {
-
-        // Verificar se o cliente já possui uma assinatura para o aplicativo
         AssinaturaModel assinaturaExistente = assinaturaRepository.buscaPorClienteAplicativo(idCliente, idAplicativo);
         if (assinaturaExistente == null) {
             return null;
         }
 
-        // Criar a assinatura
         return assinaturaRepository.criar(idCliente, idAplicativo);
     }
 

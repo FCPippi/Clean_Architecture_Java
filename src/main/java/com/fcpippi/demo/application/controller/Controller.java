@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fcpippi.demo.application.dto.AplicativoDTO;
 import com.fcpippi.demo.application.dto.AssinaturaDTO;
 import com.fcpippi.demo.application.dto.ClienteDTO;
+import com.fcpippi.demo.application.dto.CriaAssinaturaDTO;
+import com.fcpippi.demo.application.dto.RegistraPagamentoDTO;
 import com.fcpippi.demo.application.useCases.AtualizaCustoMensalUC;
 import com.fcpippi.demo.application.useCases.CriaAssinaturaUC;
 import com.fcpippi.demo.application.useCases.ListaAplicativosUC;
@@ -87,11 +89,10 @@ public class Controller {
         return this.verificaValidadeAssinaturaUC.run(codigoAssinatura);
     }
 
-
     @PostMapping("/servcad/assinaturas")
     @CrossOrigin(origins = "*")
-    public AssinaturaDTO criaAssinatura(@RequestBody Long codigoCliente, @RequestBody Long codigoAplicativo) {
-        return this.criaAssinaturaUC.run(codigoCliente, codigoAplicativo);
+    public AssinaturaDTO criaAssinatura(@RequestBody CriaAssinaturaDTO criaAssinaturaDTO) {
+        return this.criaAssinaturaUC.run(criaAssinaturaDTO.getCodigoCliente(), criaAssinaturaDTO.getCodigoAplicativo());
     }
 
     @PostMapping("/servcad/aplicativos/atualizacusto/{idAplicativo}")
@@ -103,8 +104,8 @@ public class Controller {
 
     @PostMapping("/registrapagamento")
     @CrossOrigin(origins = "*")
-    public Object registraPagamento(@RequestBody String dia, @RequestBody String mes, @RequestBody String ano,
-            @RequestBody Long codigoAssinatura, @RequestBody Double valorPago) {
-        return this.registraPagamentoUC.run(dia, mes, ano, codigoAssinatura, valorPago);
+    public Object registraPagamento(@RequestBody RegistraPagamentoDTO pagamentoDTO) {
+        return this.registraPagamentoUC.run(pagamentoDTO.getDia(), pagamentoDTO.getMes(), pagamentoDTO.getAno(),
+                pagamentoDTO.getCodigoAssinatura(), pagamentoDTO.getValorPago());
     }
 }
