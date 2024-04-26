@@ -12,7 +12,7 @@ public class PagamentoService {
         this.pagamentoRepository = pagamentoRepository;
     }
 
-    public Object registrar(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago) {
+    public Object registrar(String dia, String mes, String ano, long codigoAssinatura, double valorPago) {
         return pagamentoRepository.registrar(dia, mes, ano, codigoAssinatura, valorPago);
     }
 }

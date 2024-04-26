@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PagamentoModel {
-    private Long codigo;
+    private long codigo;
     private AssinaturaModel assinatura;
-    private Double valorPago;
+    private double valorPago;
     private LocalDate dataPagamento;
     private String promocao;
 }

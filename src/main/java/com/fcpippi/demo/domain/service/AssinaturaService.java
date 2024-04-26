@@ -14,7 +14,7 @@ public class AssinaturaService {
         this.assinaturaRepository = assinaturaRepository;
     }
 
-    public AssinaturaModel criarAssinatura(Long idCliente, Long idAplicativo) {
+    public AssinaturaModel criarAssinatura(long idCliente, long idAplicativo) {
         AssinaturaModel assinaturaExistente = assinaturaRepository.buscaPorClienteAplicativo(idCliente, idAplicativo);
         if (assinaturaExistente != null) {
             return null;
@@ -27,15 +27,15 @@ public class AssinaturaService {
         return assinaturaRepository.buscarPorTipo(tipo);
     }
 
-    public List<AssinaturaModel> buscarPorCliente(Long codigoCliente) {
+    public List<AssinaturaModel> buscarPorCliente(long codigoCliente) {
         return assinaturaRepository.buscarPorCliente(codigoCliente);
     }
 
-    public List<AssinaturaModel> buscarPorAplicativo(Long codigoAplicativo) {
+    public List<AssinaturaModel> buscarPorAplicativo(long codigoAplicativo) {
         return assinaturaRepository.buscarPorAplicativo(codigoAplicativo);
     }
 
-    public boolean assinaturaValida(Long codigoAssinatura) {
+    public boolean assinaturaValida(long codigoAssinatura) {
         return assinaturaRepository.assinaturaValida(codigoAssinatura);
     }
 }

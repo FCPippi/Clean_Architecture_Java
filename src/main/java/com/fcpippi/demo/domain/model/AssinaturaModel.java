@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssinaturaModel {
-    private Long codigo;
+    private long codigo;
     private AplicativoModel aplicativo;
     private ClienteModel cliente;
     private LocalDate inicioVigencia;

@@ -19,7 +19,7 @@ public class AplicativoService {
         return aplicativoRepository.buscarTodos();
     }
 
-    public AplicativoModel atualizarCusto(Long codigoAplicativo, Double custo) {
+    public AplicativoModel atualizarCusto(long codigoAplicativo, double custo) {
         return aplicativoRepository.atualizarCusto(codigoAplicativo, custo);
     }
 }
