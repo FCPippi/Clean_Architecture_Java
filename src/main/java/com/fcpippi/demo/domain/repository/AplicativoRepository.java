@@ -6,6 +6,8 @@ import com.fcpippi.demo.domain.model.AplicativoModel;
 
 public interface AplicativoRepository {
     List<AplicativoModel> buscarTodos();
-    AplicativoModel buscarPorId(Long id);
-    AplicativoModel atualizarCusto(Long id, Double custo);
+
+    AplicativoModel buscarPorId(long id);
+
+    AplicativoModel atualizarCusto(long id, double custo);
 }

@@ -11,7 +11,7 @@ public class RegistraPagamentoUC {
         this.pagamentoService = pagamentoService;
     }
 
-    public Object run(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago) {
+    public Object run(String dia, String mes, String ano, long codigoAssinatura, double valorPago) {
         return this.pagamentoService.registrar(dia, mes, ano, codigoAssinatura, valorPago);
     }
 }

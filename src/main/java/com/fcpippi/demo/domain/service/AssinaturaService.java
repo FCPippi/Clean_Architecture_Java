@@ -16,7 +16,7 @@ public class AssinaturaService {
 
     public AssinaturaModel criarAssinatura(Long idCliente, Long idAplicativo) {
         AssinaturaModel assinaturaExistente = assinaturaRepository.buscaPorClienteAplicativo(idCliente, idAplicativo);
-        if (assinaturaExistente == null) {
+        if (assinaturaExistente != null) {
             return null;
         }
 

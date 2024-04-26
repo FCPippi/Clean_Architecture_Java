@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssinaturaDTO {
-    private Long codigo;
-    private Long codigoAplicativo;
-    private Long codigoCliente;
+    private long codigo;
+    private long codigoAplicativo;
+    private long codigoCliente;
     private LocalDate inicioVigencia;
     private LocalDate fimVigencia;
     private String tipo;

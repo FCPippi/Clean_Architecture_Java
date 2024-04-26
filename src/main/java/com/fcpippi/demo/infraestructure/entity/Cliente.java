@@ -13,25 +13,23 @@ import lombok.NoArgsConstructor;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
-    
+    private long codigo;
+
     private String nome;
-    
+
     private String email;
 
     public static ClienteModel toModel(Cliente cliente) {
         return new ClienteModel(
-            cliente.getCodigo(),
-            cliente.getNome(),
-            cliente.getEmail()
-        );
+                cliente.getCodigo(),
+                cliente.getNome(),
+                cliente.getEmail());
     }
 
     public static Cliente fromModel(ClienteModel clienteModel) {
         return new Cliente(
-            clienteModel.getCodigo(),
-            clienteModel.getNome(),
-            clienteModel.getEmail()
-        );
+                clienteModel.getCodigo(),
+                clienteModel.getNome(),
+                clienteModel.getEmail());
     }
 }

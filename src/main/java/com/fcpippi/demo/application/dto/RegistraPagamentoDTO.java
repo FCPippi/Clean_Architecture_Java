@@ -11,6 +11,6 @@ public class RegistraPagamentoDTO {
     private String dia;
     private String mes;
     private String ano;
-    private Long codigoAssinatura;
-    private Double valorPago;
+    private long codigoAssinatura;
+    private double valorPago;
 }

@@ -13,25 +13,23 @@ import lombok.NoArgsConstructor;
 public class Aplicativo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
-    
+    private long codigo;
+
     private String nome;
-    
-    private Double custoMensal;
+
+    private double custoMensal;
 
     public static AplicativoModel toModel(Aplicativo aplicativo) {
         return new AplicativoModel(
-            aplicativo.getCodigo(),
-            aplicativo.getNome(),
-            aplicativo.getCustoMensal()
-        );
+                aplicativo.getCodigo(),
+                aplicativo.getNome(),
+                aplicativo.getCustoMensal());
     }
 
     public static Aplicativo fromModel(AplicativoModel aplicativoModel) {
         return new Aplicativo(
-            aplicativoModel.getCodigo(),
-            aplicativoModel.getNome(),
-            aplicativoModel.getCustoMensal()
-        );
+                aplicativoModel.getCodigo(),
+                aplicativoModel.getNome(),
+                aplicativoModel.getCustoMensal());
     }
 }

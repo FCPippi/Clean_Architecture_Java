@@ -14,7 +14,7 @@ public class ListaAssinaturaClienteUC {
         this.assinaturaService = assinaturaService;
     }
 
-    public List<AssinaturaDTO> run(Long codigoCliente) {
+    public List<AssinaturaDTO> run(long codigoCliente) {
         return this.assinaturaService.buscarPorCliente(codigoCliente).stream()
                 .map(assinatura -> AssinaturaDTO.fromModel(assinatura)).toList();
     }

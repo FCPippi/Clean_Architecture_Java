@@ -29,7 +29,7 @@ public class AplicativoRepositoryImpl implements AplicativoRepository {
     }
 
     @Override
-    public AplicativoModel buscarPorId(Long id) {
+    public AplicativoModel buscarPorId(long id) {
         Aplicativo app = repository.findById(id).orElse(null);
 
         if (app == null) {
@@ -39,7 +39,7 @@ public class AplicativoRepositoryImpl implements AplicativoRepository {
     }
 
     @Override
-    public AplicativoModel atualizarCusto(Long id, Double custo) {
+    public AplicativoModel atualizarCusto(long id, double custo) {
         Aplicativo app = repository.findById(id).orElse(null);
         if (app == null) {
             return null;

@@ -24,7 +24,7 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
     }
 
     @Override
-    public Object registrar(String dia, String mes, String ano, Long codigoAssinatura, Double valorPago) {
+    public Object registrar(String dia, String mes, String ano, long codigoAssinatura, double valorPago) {
         Assinatura assinatura = assinaturaJpaRepository.findById(codigoAssinatura).orElse(null);
         if (assinatura == null)
             return null;

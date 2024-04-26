@@ -14,34 +14,32 @@ import lombok.NoArgsConstructor;
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
-    
+    private long codigo;
+
     @ManyToOne
     private Assinatura assinatura;
-    
-    private Double valorPago;
-    
+
+    private double valorPago;
+
     private LocalDate dataPagamento;
-    
+
     private String promocao;
 
     public static PagamentoModel toModel(Pagamento pagamento) {
         return new PagamentoModel(
-            pagamento.getCodigo(),
-            Assinatura.toModel(pagamento.getAssinatura()),
-            pagamento.getValorPago(),
-            pagamento.getDataPagamento(),
-            pagamento.getPromocao()
-        );
+                pagamento.getCodigo(),
+                Assinatura.toModel(pagamento.getAssinatura()),
+                pagamento.getValorPago(),
+                pagamento.getDataPagamento(),
+                pagamento.getPromocao());
     }
 
     public static Pagamento fromModel(PagamentoModel pagamentoModel) {
         return new Pagamento(
-            pagamentoModel.getCodigo(),
-            Assinatura.fromModel(pagamentoModel.getAssinatura()),
-            pagamentoModel.getValorPago(),
-            pagamentoModel.getDataPagamento(),
-            pagamentoModel.getPromocao()
-        );
+                pagamentoModel.getCodigo(),
+                Assinatura.fromModel(pagamentoModel.getAssinatura()),
+                pagamentoModel.getValorPago(),
+                pagamentoModel.getDataPagamento(),
+                pagamentoModel.getPromocao());
     }
 }

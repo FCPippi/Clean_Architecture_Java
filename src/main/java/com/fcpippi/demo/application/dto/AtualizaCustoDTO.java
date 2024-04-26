@@ -1,14 +1,12 @@
-package com.fcpippi.demo.domain.model;
+package com.fcpippi.demo.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class AplicativoModel {
-    private long codigo;
-    private String nome;
+@AllArgsConstructor
+public class AtualizaCustoDTO {
     private double custoMensal;
 }

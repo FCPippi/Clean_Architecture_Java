@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriaAssinaturaDTO {
-    private Long codigoCliente;
-    private Long codigoAplicativo;
+    private long codigoCliente;
+    private long codigoAplicativo;
 }

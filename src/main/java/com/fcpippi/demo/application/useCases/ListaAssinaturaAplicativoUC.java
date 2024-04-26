@@ -14,7 +14,7 @@ public class ListaAssinaturaAplicativoUC {
         this.assinaturaService = assinaturaService;
     }
 
-    public List<AssinaturaDTO> run(Long codigoAplicativo) {
+    public List<AssinaturaDTO> run(long codigoAplicativo) {
         return this.assinaturaService.buscarPorAplicativo(codigoAplicativo).stream()
                 .map(assinatura -> AssinaturaDTO.fromModel(assinatura)).toList();
     }

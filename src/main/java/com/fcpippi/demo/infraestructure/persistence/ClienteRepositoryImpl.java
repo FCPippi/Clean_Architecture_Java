@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Repository
 @Primary
 public class ClienteRepositoryImpl implements ClienteRepository {
@@ -27,13 +26,13 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
-    public ClienteModel buscaPorId(Long id) {
-       Optional<Cliente> cliente =  repository.findById(id);
-       if (cliente.isPresent()) {
-        return Cliente.toModel(cliente.get());
-       } else {
-        return null;
-       }
-       
+    public ClienteModel buscaPorId(long id) {
+        Optional<Cliente> cliente = repository.findById(id);
+        if (cliente.isPresent()) {
+            return Cliente.toModel(cliente.get());
+        } else {
+            return null;
+        }
+
     }
 }

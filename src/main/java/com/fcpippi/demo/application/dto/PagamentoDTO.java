@@ -10,19 +10,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PagamentoDTO {
-    private Long codigo;
-    private Long codigoAssinatura;
-    private Double valorPago;
+    private long codigo;
+    private long codigoAssinatura;
+    private double valorPago;
     private LocalDate dataPagamento;
     private String promocao;
 
     public static PagamentoDTO fromModel(PagamentoModel pagamento) {
         return new PagamentoDTO(
-            pagamento.getCodigo(),
-            pagamento.getAssinatura().getCodigo(),
-            pagamento.getValorPago(),
-            pagamento.getDataPagamento(),
-            pagamento.getPromocao()
-        );
+                pagamento.getCodigo(),
+                pagamento.getAssinatura().getCodigo(),
+                pagamento.getValorPago(),
+                pagamento.getDataPagamento(),
+                pagamento.getPromocao());
     }
 }

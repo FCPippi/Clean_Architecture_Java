@@ -13,7 +13,7 @@ public class AtualizaCustoMensalUC {
         this.aplicativoService = aplicativoService;
     }
 
-    public AplicativoDTO run(Long codigoAplicativo, Double custoMensal) {
+    public AplicativoDTO run(long codigoAplicativo, double custoMensal) {
         return AplicativoDTO.fromModel(this.aplicativoService.atualizarCusto(codigoAplicativo, custoMensal));
     }
 }

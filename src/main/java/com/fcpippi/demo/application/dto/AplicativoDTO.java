@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AplicativoDTO {
-    private Long codigo;
+    private long codigo;
     private String nome;
-    private Double custoMensal;
+    private double custoMensal;
 
     public static AplicativoDTO fromModel(AplicativoModel aplicativo) {
         return new AplicativoDTO(

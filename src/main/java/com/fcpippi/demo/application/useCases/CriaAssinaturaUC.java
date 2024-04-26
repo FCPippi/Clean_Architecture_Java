@@ -1,7 +1,5 @@
 package com.fcpippi.demo.application.useCases;
 
-
-
 import com.fcpippi.demo.application.dto.AssinaturaDTO;
 import com.fcpippi.demo.domain.model.AssinaturaModel;
 import com.fcpippi.demo.domain.service.AssinaturaService;
@@ -16,7 +14,7 @@ public class CriaAssinaturaUC {
         this.assinaturaService = assinaturaService;
     }
 
-    public AssinaturaDTO run(Long idCliente, Long idAplicativ) {
+    public AssinaturaDTO run(long idCliente, long idAplicativ) {
         AssinaturaModel assinatura = assinaturaService.criarAssinatura(idCliente, idAplicativ);
         return AssinaturaDTO.fromModel(assinatura);
     }
