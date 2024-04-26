@@ -53,6 +53,11 @@ public class Controller {
         this.verificaValidadeAssinaturaUC = verificaValidadeAssinaturaUC;
     }
 
+    @GetMapping("")
+    public String getHello() {
+        return "Hello World";
+    }
+
     @GetMapping("/servcad/clientes")
     @CrossOrigin(origins = "*")
     public List<ClienteDTO> listaClientes() {
