@@ -37,7 +37,6 @@ public class Controller {
     private RegistraPagamentoUC registraPagamentoUC;
     private VerificaValidadeAssinaturaUC verificaValidadeAssinaturaUC;
 
-    @Autowired
     public Controller(AtualizaCustoMensalUC atualizaCustoMensalUC, CriaAssinaturaUC criaAssinaturaUC,
             ListaAplicativosUC listaAplicativosUC, ListaAssinaturaClienteUC listaAssinaturaClienteUC,
             ListaAssinaturaAplicativoUC listaAssinaturaAplicativoUC,
