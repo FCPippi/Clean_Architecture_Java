@@ -31,7 +31,7 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
 
         LocalDate dataValidade = assinatura.getFimVigencia();
         Double valorAplicativo = assinatura.getAplicativo().getCustoMensal();
-        Double valorEstornado = valorAplicativo;
+        Double valorEstornado = valorPago;
         String status = "VALOR_INCORRETO";
 
         if (valorPago >= assinatura.getAplicativo().getCustoMensal()) {
