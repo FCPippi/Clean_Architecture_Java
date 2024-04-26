@@ -92,7 +92,7 @@ public class AssinaturaRepositoryImpl implements AssinaturaRepository {
     public boolean assinaturaValida(Long codigoAssinatura) {
         Assinatura assinatura = assinaturaJpaRepository.findById(codigoAssinatura).orElse(null);
         if (assinatura != null) {
-            return assinatura.getFimVigencia().isAfter(LocalDate.now());
+            return assinatura.getFimVigencia().isAfter(LocalDate.now()) || assinatura.getFimVigencia().isEqual(LocalDate.now());
         }
         return false;
     }

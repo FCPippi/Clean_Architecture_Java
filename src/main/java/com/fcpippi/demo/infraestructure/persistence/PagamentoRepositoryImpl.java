@@ -30,27 +30,24 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
             return null;
 
         LocalDate dataValidade = assinatura.getFimVigencia();
-        Double valorEstornado = assinatura.getAplicativo().getCustoMensal();
+        Double valorAplicativo = assinatura.getAplicativo().getCustoMensal();
+        Double valorEstornado = valorAplicativo;
         String status = "VALOR_INCORRETO";
 
-        String[] obj = { status, dataValidade.toString(), valorEstornado.toString() };
-
-        if (valorPago < assinatura.getAplicativo().getCustoMensal()) {
-
-        } else {
+        if (valorPago >= assinatura.getAplicativo().getCustoMensal()) {
 
             if (dataValidade.isAfter(LocalDate.now())) {
                 dataValidade = dataValidade.plusDays(30);
-                valorEstornado = 0.0;
+                valorEstornado = valorPago - valorAplicativo;
                 status = "PAGAMENTO_OK";
             } else {
                 dataValidade = LocalDate.now().plusDays(30);
-                valorEstornado = 0.0;
+                valorEstornado = valorPago - valorAplicativo;
                 status = "PAGAMENTO_OK";
             }
             Pagamento pagamento = new Pagamento();
             LocalDate dataPagamento = LocalDate.of(Integer.parseInt(ano), Integer.parseInt(mes), Integer.parseInt(dia));
-            
+
             pagamento.setValorPago(valorPago);
             pagamento.setDataPagamento(dataPagamento);
             pagamento.setAssinatura(assinatura);
@@ -60,9 +57,7 @@ public class PagamentoRepositoryImpl implements PagamentoRepository {
         assinatura.setFimVigencia(dataValidade);
         assinaturaJpaRepository.save(assinatura);
 
-        obj[0] = status;
-        obj[1] = dataValidade.toString();
-        obj[2] = valorEstornado.toString();
+        String[] obj = { status, dataValidade.toString(), valorEstornado.toString() };
 
         return obj;
     }
