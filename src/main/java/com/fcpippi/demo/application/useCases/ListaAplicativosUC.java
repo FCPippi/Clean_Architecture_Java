@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.fcpippi.demo.application.dto.AplicativoDTO;
 import com.fcpippi.demo.domain.service.AplicativoService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ListaAplicativosUC {
     private AplicativoService aplicativoService;
 

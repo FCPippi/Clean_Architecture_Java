@@ -1,8 +1,11 @@
 package com.fcpippi.demo.application.useCases;
 
+import org.springframework.stereotype.Component;
+
 import com.fcpippi.demo.application.dto.AplicativoDTO;
 import com.fcpippi.demo.domain.service.AplicativoService;
 
+@Component
 public class AtualizaCustoMensalUC {
     private AplicativoService aplicativoService;
 

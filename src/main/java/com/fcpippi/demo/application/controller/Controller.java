@@ -2,6 +2,7 @@ package com.fcpippi.demo.application.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class Controller {
     private RegistraPagamentoUC registraPagamentoUC;
     private VerificaValidadeAssinaturaUC verificaValidadeAssinaturaUC;
 
+    @Autowired
     public Controller(AtualizaCustoMensalUC atualizaCustoMensalUC, CriaAssinaturaUC criaAssinaturaUC,
             ListaAplicativosUC listaAplicativosUC, ListaAssinaturaClienteUC listaAssinaturaClienteUC,
             ListaAssinaturaAplicativoUC listaAssinaturaAplicativoUC,

@@ -1,7 +1,9 @@
 package com.fcpippi.demo.application.useCases;
 
 import com.fcpippi.demo.domain.service.PagamentoService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RegistraPagamentoUC {
     private PagamentoService pagamentoService;
 

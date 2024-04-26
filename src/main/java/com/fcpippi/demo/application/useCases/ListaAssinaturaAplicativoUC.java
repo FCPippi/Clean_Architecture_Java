@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.fcpippi.demo.application.dto.AssinaturaDTO;
 import com.fcpippi.demo.domain.service.AssinaturaService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ListaAssinaturaAplicativoUC {
     private AssinaturaService assinaturaService;
 

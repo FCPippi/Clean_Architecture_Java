@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.fcpippi.demo.application.dto.ClienteDTO;
 import com.fcpippi.demo.domain.service.ClienteService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ListaClientesUC {
     private ClienteService clienteService;
 

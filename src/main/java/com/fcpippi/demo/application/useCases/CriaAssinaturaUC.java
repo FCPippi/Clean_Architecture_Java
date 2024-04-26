@@ -1,9 +1,14 @@
 package com.fcpippi.demo.application.useCases;
 
+
+
 import com.fcpippi.demo.application.dto.AssinaturaDTO;
 import com.fcpippi.demo.domain.model.AssinaturaModel;
 import com.fcpippi.demo.domain.service.AssinaturaService;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CriaAssinaturaUC {
     private AssinaturaService assinaturaService;
 

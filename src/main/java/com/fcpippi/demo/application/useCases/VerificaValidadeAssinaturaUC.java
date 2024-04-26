@@ -1,7 +1,9 @@
 package com.fcpippi.demo.application.useCases;
 
 import com.fcpippi.demo.domain.service.AssinaturaService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class VerificaValidadeAssinaturaUC {
     private AssinaturaService assinaturaService;
 
